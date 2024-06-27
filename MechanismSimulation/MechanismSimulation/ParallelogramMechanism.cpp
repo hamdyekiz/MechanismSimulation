@@ -2,9 +2,6 @@
 
 void ParallelogramMechanism::checkGrashofTheorem()
 {
-    double shortest, longest;
-    FourBarMechanism::calculateShortestAndLongest(links, shortest, longest);
-
     std::cout << "The type of mechanism is Parallelogram Mechanism.\n";
     if (links[0] + links[1] == links[2] + links[3])
     {

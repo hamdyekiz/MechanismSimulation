@@ -22,11 +22,17 @@ protected:
 public:
     // In this method user enters the Links of the mechanism
     static FourBarMechanism* userLinkInput(); 
-    // This method find the shortest and longest link
-    static void calculateShortestAndLongest(double links[4], double& shortest, double& longest); 
+    /*
+    This method find the shortest and longest link index and length
+    shortestLink = index of the shortest link
+    longestLink = index of the longest link
+    shortest = length of the shortest link
+    longest = length of the longest link
+    */ 
+    static void calculateShortestAndLongest(double links[4], int& shortestLink, int& longestLink, double& shortest, double& longest);
 };
 
-// Crank-Rocker Mechanism class shortest link = crank inherites from FourBarMechanism class
+// Crank-Rocker Mechanism class inherites from FourBarMechanism class (shortest link = crank) 
 class CrankRockerMechanism : public FourBarMechanism {
 public:
     CrankRockerMechanism(double Links[4])
@@ -41,7 +47,7 @@ public:
     void checkGrashofTheorem() override;
 };
 
-// Rocker-Crank Mechanism class shortest link = rocker inherites from FourBarMechanism class
+// Rocker-Crank Mechanism class inherites from FourBarMechanism class (shortest link = rocker) 
 class RockerCrankMechanism : public FourBarMechanism {
 public:
     RockerCrankMechanism(double Links[4])
@@ -56,7 +62,7 @@ public:
     void checkGrashofTheorem() override;
 };
 
-// Double-Crank Mechanism (Drag Link Mechanism) class shortest link = ground inherites from FourBarMechanism class
+// Double-Crank Mechanism (Drag Link Mechanism) class inherites from FourBarMechanism class (shortest link = ground) 
 class DoubleCrankMechanism : public FourBarMechanism {
 public:
     DoubleCrankMechanism(double Links[4])
@@ -71,7 +77,7 @@ public:
     void checkGrashofTheorem() override;
 };
 
-// Double-Rocker Mechanism class shortest link = coupler inherites from FourBarMechanism class
+// Double-Rocker Mechanism class inherites from FourBarMechanism class (shortest link = coupler)
 class DoubleRockerMechanism : public FourBarMechanism {
 public:
     DoubleRockerMechanism(double Links[4])
@@ -86,7 +92,7 @@ public:
     void checkGrashofTheorem() override;
 };
 
-// Derived class for Parallelogram Mechanism inherites from FourBarMechanism class
+// Parallelogram Mechanism inherites from FourBarMechanism class
 class ParallelogramMechanism : public FourBarMechanism {
 public:
     ParallelogramMechanism(double Links[4])
