@@ -11,17 +11,19 @@ protected:
     links[2] = Link 3 (rocker/lever/follower)
     links[3] = Link 4 (ground/frame)
     */
-    double links[4]; 
+    double links[4];
+    // thetaTwoAngle = Angle between link 1 and ground link (link 4)
+    double thetaTwoAngle;
 
     // Method to check the mechanism is obey the Grashof's Law or not
     virtual void checkGrashofTheorem(); 
 
     // Find the mechanism type with respect to location of the shortest link
-    static FourBarMechanism* mechanismController(double links[4]); 
+    static FourBarMechanism* mechanismController(double links[4], double thetaTwoAngle);
 
 public:
     // In this method user enters the Links of the mechanism
-    static FourBarMechanism* userLinkInput(); 
+    static FourBarMechanism* userInput(); 
     /*
     This method find the shortest and longest link index and length
     shortestLink = index of the shortest link
@@ -30,17 +32,20 @@ public:
     longest = length of the longest link
     */ 
     static void calculateShortestAndLongest(double links[4], int& shortestLink, int& longestLink, double& shortest, double& longest);
+    static void angleFinder(double links[4], double thetaTwoAngle, double& thetaThreeAngle, double& thetaFourAngle);
+
 };
 
 // Crank-Rocker Mechanism class inherites from FourBarMechanism class (shortest link = crank) 
 class CrankRockerMechanism : public FourBarMechanism {
 public:
-    CrankRockerMechanism(double Links[4])
+    CrankRockerMechanism(double Links[4], double ThetaTwoAngle)
     {
         links[0] = Links[0];
         links[1] = Links[1];
         links[2] = Links[2];
         links[3] = Links[3];
+        thetaTwoAngle = ThetaTwoAngle;
         checkGrashofTheorem();
     }
 
@@ -50,12 +55,13 @@ public:
 // Rocker-Crank Mechanism class inherites from FourBarMechanism class (shortest link = rocker) 
 class RockerCrankMechanism : public FourBarMechanism {
 public:
-    RockerCrankMechanism(double Links[4])
+    RockerCrankMechanism(double Links[4], double ThetaTwoAngle)
     {
         links[0] = Links[0];
         links[1] = Links[1];
         links[2] = Links[2];
         links[3] = Links[3];
+        thetaTwoAngle = ThetaTwoAngle;
         checkGrashofTheorem();
     }
 
@@ -65,12 +71,13 @@ public:
 // Double-Crank Mechanism (Drag Link Mechanism) class inherites from FourBarMechanism class (shortest link = ground) 
 class DoubleCrankMechanism : public FourBarMechanism {
 public:
-    DoubleCrankMechanism(double Links[4])
+    DoubleCrankMechanism(double Links[4], double ThetaTwoAngle)
     {
         links[0] = Links[0];
         links[1] = Links[1];
         links[2] = Links[2];
         links[3] = Links[3];
+        thetaTwoAngle = ThetaTwoAngle;
         checkGrashofTheorem();
     }
 
@@ -80,12 +87,13 @@ public:
 // Double-Rocker Mechanism class inherites from FourBarMechanism class (shortest link = coupler)
 class DoubleRockerMechanism : public FourBarMechanism {
 public:
-    DoubleRockerMechanism(double Links[4])
+    DoubleRockerMechanism(double Links[4], double ThetaTwoAngle)
     {
         links[0] = Links[0];
         links[1] = Links[1];
         links[2] = Links[2];
         links[3] = Links[3];
+        thetaTwoAngle = ThetaTwoAngle;
         checkGrashofTheorem();
     }
 
@@ -95,12 +103,13 @@ public:
 // Parallelogram Mechanism inherites from FourBarMechanism class
 class ParallelogramMechanism : public FourBarMechanism {
 public:
-    ParallelogramMechanism(double Links[4])
+    ParallelogramMechanism(double Links[4], double ThetaTwoAngle)
     {
         links[0] = Links[0];
         links[1] = Links[1];
         links[2] = Links[2];
         links[3] = Links[3];
+        thetaTwoAngle = ThetaTwoAngle;
         checkGrashofTheorem();
     }
 
