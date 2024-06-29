@@ -1,5 +1,9 @@
 #include "FourBarMechanism.h"
 
+const double PI = 3.14159265358979323846;
+
+
+
 void ParallelogramMechanism::checkGrashofTheorem()
 {
     double thetaThreeAngle = 0.0, thetaFourAngle = 0.0;
@@ -14,7 +18,10 @@ void ParallelogramMechanism::checkGrashofTheorem()
     else {
         std::cout << "This mechanism does not satisfy Grashof's theorem.\n";
     }
+}
 
-    std::cout << "Theta Three Angle: " << thetaThreeAngle << " degrees" << std::endl;
-    std::cout << "Theta Four Angle: " << thetaFourAngle << " degrees" << std::endl;
+void ParallelogramMechanism::angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
+{
+    std::cout << "Please enter angle between link 1 and ground link (link 4): ";
+    std::cin >> thetaTwoAngle;
 }

@@ -4,26 +4,28 @@
 const double PI = 3.14159265358979323846;
 
 // Method to convert degrees to radians
-double degreesToRadians(double degrees) 
+double FourBarMechanism::degreesToRadians(double degrees)
 {
     return degrees * (PI / 180.0);
 }
+
 // Method to convert radians to degrees
-double radiansToDegrees(double radians) 
+double FourBarMechanism::radiansToDegrees(double radians)
 {
     return radians * (180.0 / PI);
 }
+
 // Method to convert thetaTwoAngle to 0-360 range
-double normalizeAngle(double thetaTwoAngle) 
+double FourBarMechanism::normalizeAngle(double angle)
 {
-    thetaTwoAngle = fmod(thetaTwoAngle, 360.0);
-    if (thetaTwoAngle < 0.0) {
-        thetaTwoAngle += 360.0;
+    angle = fmod(angle, 360.0);
+    if (angle < 0.0) {
+        angle += 360.0;
     }
-    return thetaTwoAngle;
+    return angle;
 }
 
-FourBarMechanism* FourBarMechanism::userInput()
+FourBarMechanism* FourBarMechanism::userLinkInput()
 {
     double Links[4];
     double ThetaTwoAngle;
@@ -38,17 +40,18 @@ FourBarMechanism* FourBarMechanism::userInput()
     std::cin >> Links[2];
 
     std::cout << "Please enter length of the link 4: ";
+
     std::cin >> Links[3];
 
-    std::cout << "Please enter angle between link 1 and ground link (link 4): ";
-    std::cin >> ThetaTwoAngle;
+    //std::cout << "Please enter angle between link 1 and ground link (link 4): ";
+    //std::cin >> ThetaTwoAngle;
 
-    ThetaTwoAngle = normalizeAngle(ThetaTwoAngle);
+    //ThetaTwoAngle = normalizeAngle(ThetaTwoAngle);
 
-    return mechanismController(Links, ThetaTwoAngle);
+    return mechanismController(Links);
 }
 
-FourBarMechanism* FourBarMechanism::mechanismController(double links[4], double thetaTwoAngle)
+FourBarMechanism* FourBarMechanism::mechanismController(double links[4])
 {
     int shortestLink, longestLink;
     double shortest, longest;
@@ -56,23 +59,23 @@ FourBarMechanism* FourBarMechanism::mechanismController(double links[4], double 
 
     if (links[0] == links[2] && links[1] == links[3])
     {
-        return new ParallelogramMechanism(links, thetaTwoAngle);
+        return new ParallelogramMechanism(links);
     }
     else if (shortestLink == 3)
     {
-        return new DoubleCrankMechanism(links, thetaTwoAngle);
+        return new DoubleCrankMechanism(links);
     }
     else if (shortestLink == 2)
     {
-        return new RockerCrankMechanism(links, thetaTwoAngle);
+        return new RockerCrankMechanism(links);
     }
     else if (shortestLink == 1)
     {
-        return new DoubleRockerMechanism(links, thetaTwoAngle);
+        return new DoubleRockerMechanism(links);
     }
     else if (shortestLink == 0)
     {
-        return new CrankRockerMechanism(links, thetaTwoAngle);
+        return new CrankRockerMechanism(links);
     }
     else
     {
@@ -81,7 +84,7 @@ FourBarMechanism* FourBarMechanism::mechanismController(double links[4], double 
     }
 }
 
-void FourBarMechanism::angleFinder(double links[4], double thetaTwoAngle, double& thetaThreeAngle, double& thetaFourAngle)
+void FourBarMechanism::angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
 {
     double lengthL;
     double alphaAngle;

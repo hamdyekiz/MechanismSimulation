@@ -4,6 +4,6 @@
 int main()
 {
 
-    FourBarMechanism* mechanism = FourBarMechanism::userInput();
+    FourBarMechanism* mechanism = FourBarMechanism::userLinkInput();
     return 0;
 }

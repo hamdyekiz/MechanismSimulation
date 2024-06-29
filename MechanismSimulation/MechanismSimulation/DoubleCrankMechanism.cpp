@@ -1,5 +1,8 @@
 #include "FourBarMechanism.h"
 
+const double PI = 3.14159265358979323846;
+
+
 void DoubleCrankMechanism::checkGrashofTheorem()
 {
     int shortestLink, longestLink;
@@ -21,4 +24,10 @@ void DoubleCrankMechanism::checkGrashofTheorem()
     std::cout << "Theta Three Angle: " << thetaThreeAngle << " degrees" << std::endl;
     std::cout << "Theta Four Angle: " << thetaFourAngle << " degrees" << std::endl;
 
+}
+
+void DoubleCrankMechanism::angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
+{
+    std::cout << "Please enter angle between link 1 and ground link (link 4): ";
+    std::cin >> thetaTwoAngle;
 }
