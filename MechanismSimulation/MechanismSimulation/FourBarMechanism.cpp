@@ -118,9 +118,11 @@ void FourBarMechanism::angleFinder(double links[4], double thetaTwoAngle, double
         return;
     }
 
+}
+void FourBarMechanism::positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
+{
 
 }
-
 void FourBarMechanism::calculateShortestAndLongest(double links[4], int& shortestLink, int& longestLink, double& shortest, double& longest)
 {
     shortest = links[0];

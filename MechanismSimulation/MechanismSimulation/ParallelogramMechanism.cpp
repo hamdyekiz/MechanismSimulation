@@ -25,3 +25,7 @@ void ParallelogramMechanism::angleFinder(double links[4], double thetaTwoAngle, 
     std::cout << "Please enter angle between link 1 and ground link (link 4): ";
     std::cin >> thetaTwoAngle;
 }
+void ParallelogramMechanism::positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
+{
+
+}

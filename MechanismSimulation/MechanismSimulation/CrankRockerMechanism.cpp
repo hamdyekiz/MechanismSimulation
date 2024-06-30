@@ -29,3 +29,7 @@ void CrankRockerMechanism::angleFinder(double links[4], double thetaTwoAngle, do
     std::cout << "Please enter angle between link 1 and ground link (link 4): ";
     std::cin >> thetaTwoAngle;
 }
+void CrankRockerMechanism::positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
+{
+
+}

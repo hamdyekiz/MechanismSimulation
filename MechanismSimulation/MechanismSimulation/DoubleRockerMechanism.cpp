@@ -1,7 +1,9 @@
 #include "FourBarMechanism.h"
+#include <fstream>
+
 
 const double PI = 3.14159265358979323846;
-const double TOLERANCE = 1e-4; 
+const double TOLERANCE = 1e-2; 
 
 double calculateLengthL(double links[4], double phiAngle)
 {
@@ -15,7 +17,7 @@ double phiAngleFinder(double links[4], double thetaThreeAngle)
     double l1_pos, l1_neg, l2_pos, l2_neg; // l1 and l2 are both lengthL pos means positive root, neg means negative root
     double phiAngle;
 
-    for (phiAngle = 0; phiAngle <= 360; phiAngle += 0.0001)
+    for (phiAngle = 0; phiAngle <= 360; phiAngle += 0.01)
     {
         phiAngle = phiAngle * (PI / 180.0);
 
@@ -107,19 +109,54 @@ void DoubleRockerMechanism::checkGrashofTheorem()
 
 void DoubleRockerMechanism::angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
 {
-    std::cout << "Please enter the theta three angle: ";
-    std::cin >> thetaThreeAngle;
+    // Create a text file named angles.txt
+    std::ofstream outFile("angles.txt"); 
+    if (!outFile) {
+        std::cerr << "Error opening file for writing!" << std::endl;
+        return;
+    }
 
-    double PhiAngle;
-    double BetaAngle;
+    for (thetaThreeAngle = 0; thetaThreeAngle <= 360; thetaThreeAngle += 0.1)
+    {
+        double PhiAngle;
+        double BetaAngle;
 
-    double thetaThreeAngleRad = degreesToRadians(thetaThreeAngle); // Convert angle degrees to radians
-    PhiAngle = phiAngleFinder(links, thetaThreeAngleRad);
-    BetaAngle = betaAngleFinder(links, PhiAngle);
-    thetaTwoAngle = thetaTwoAngleFinder(links, PhiAngle);
-    thetaFourAngle = thetaFourAngleFinder(links,thetaThreeAngle,PhiAngle, BetaAngle);
 
-    std::cout << "Theta Two Angle: " << thetaTwoAngle << " degrees" << std::endl;
-    std::cout << "Theta Three Angle: " << thetaThreeAngle << " degrees" << std::endl;
-    std::cout << "Theta Four Angle: " << thetaFourAngle << " degrees" << std::endl;
+        double thetaThreeAngleRad = degreesToRadians(thetaThreeAngle); // Convert angle degrees to radians
+
+        PhiAngle = phiAngleFinder(links, thetaThreeAngleRad);
+        BetaAngle = betaAngleFinder(links, PhiAngle);
+        thetaTwoAngle = thetaTwoAngleFinder(links, PhiAngle);
+        thetaFourAngle = thetaFourAngleFinder(links, thetaThreeAngle, PhiAngle, BetaAngle);
+
+        double thetaTwoAngleRad = degreesToRadians(thetaTwoAngle); // Convert angle degrees to radians
+        double thetaFourAngleRad = degreesToRadians(thetaFourAngle); // Convert angle degrees to radians
+
+        outFile << thetaTwoAngle << " " << thetaThreeAngle << " " << thetaFourAngle << std::endl;
+        positionCalculator(links, thetaTwoAngleRad, thetaThreeAngleRad, thetaFourAngleRad);
+        thetaThreeAngle = radiansToDegrees(thetaThreeAngleRad); // Convert angle radians to degree
+    }
+    std::cout << ("Simulation is finished");
+
+    // Close the file when done
+    outFile.close(); 
+}
+void DoubleRockerMechanism::positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
+{
+    // Create a text file named positions.txt
+    std::ofstream outFile("positions.txt", std::ios::app); 
+    if (!outFile) {
+        std::cerr << "Error opening file for writing!" << std::endl;
+        return;
+    }
+
+    // point A(xA, yA)
+    double xA = links[0] * cos(thetaTwoAngle);
+    double yA = links[0] * sin(thetaTwoAngle);
+
+    // Write positions to the positions.txt file
+    outFile << xA << " " << yA << std::endl;
+
+    // Close the file when done
+    outFile.close(); 
 }

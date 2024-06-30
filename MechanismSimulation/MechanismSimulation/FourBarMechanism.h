@@ -20,6 +20,7 @@ protected:
     // Method to check the mechanism is obey the Grashof's Law or not
     virtual void checkGrashofTheorem(); 
     virtual void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle);
+    virtual void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle);
 
     // Find the mechanism type with respect to location of the shortest link
     static FourBarMechanism* mechanismController(double Links[4]);
@@ -58,10 +59,12 @@ public:
 
         checkGrashofTheorem();
         angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
+        positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
     void checkGrashofTheorem() override;
     void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
 };
 
 // Rocker-Crank Mechanism class inherites from FourBarMechanism class (shortest link = rocker) 
@@ -81,6 +84,7 @@ public:
 
     void checkGrashofTheorem() override;
     void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
 };
 
 // Double-Crank Mechanism (Drag Link Mechanism) class inherites from FourBarMechanism class (shortest link = ground) 
@@ -96,10 +100,12 @@ public:
 
         checkGrashofTheorem();
         angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
+        positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
     void checkGrashofTheorem() override;
     void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
 };
 
 // Double-Rocker Mechanism class inherites from FourBarMechanism class (shortest link = coupler)
@@ -114,10 +120,12 @@ public:
 
         checkGrashofTheorem();
         angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
+        positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
     void checkGrashofTheorem() override;
     void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
 };
 
 // Parallelogram Mechanism inherites from FourBarMechanism class
@@ -132,10 +140,12 @@ public:
 
         checkGrashofTheorem();
         angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
+        positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
     void checkGrashofTheorem() override;
     void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
 };
 
 #endif // FOURBARMECHANISM_H
