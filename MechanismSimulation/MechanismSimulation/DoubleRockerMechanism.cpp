@@ -1,9 +1,11 @@
 #include "FourBarMechanism.h"
 #include <fstream>
-
+#include <vector>
+#include <iomanip>
 
 const double PI = 3.14159265358979323846;
-const double TOLERANCE = 1e-2; 
+const double TOLERANCE = 1e-2;
+const double TOLERANCETHETAFOUR = 1e-6;
 
 double calculateLengthL(double links[4], double phiAngle)
 {
@@ -11,13 +13,55 @@ double calculateLengthL(double links[4], double phiAngle)
     double lengthL = links[3] * cos(phiAngle) + sqrt(pow(links[0], 2) - pow(links[3], 2) * pow(sin(phiAngle), 2));
     return lengthL;
 }
-// Continue from here
-double phiAngleFinder(double links[4], double thetaThreeAngle)
+
+std::pair <double, double> rangeOfThetaTwoAngle(double links[4])
+{
+    double thetaTwoMin = acos((pow(links[0], 2) + pow(links[3], 2) - pow(links[2] - links[1], 2)) / 2 * links[0] * links[3]);
+    double thetaTwoMax = acos((pow(links[0], 2) + pow(links[3], 2) - pow(links[2] + links[1], 2)) / 2 * links[0] * links[3]);
+    return{ thetaTwoMin, thetaTwoMax };
+}
+
+std::pair <double, double> rangeOfThetaFourAngle(double links[4])
+{
+    double thetaFourMin = PI - acos((pow(links[2], 2) + pow(links[3], 2) - pow(links[0] + links[1], 2)) / 2 * links[2] * links[3]);
+    double thetaFourMax = PI - acos((pow(links[2], 2) + pow(links[3], 2) - pow(links[0] - links[1], 2)) / 2 * links[2] * links[3]);
+    return{ thetaFourMin, thetaFourMax };
+}
+
+std::pair <double, double> rangeOfLengthL(double links[4])
+{
+    double minL = links[2] - links[1];
+    double maxL = links[2] + links[1];
+    return { minL, maxL };
+}
+
+std::pair <double, double> rangeOfPhiAngle(double links[4], double minL, double maxL)
+{
+    double phiAngle;
+    double phiMin, phiMax;
+    double lengthL = 0;
+    std::vector<double> phiAngles;
+
+    for (lengthL = minL; lengthL <= maxL; lengthL += 1e-3)
+    {
+        phiAngle = acos((pow(lengthL, 2) + pow(links[3], 2) - pow(links[0], 2)) / (2 * lengthL * links[3]));
+        phiAngles.push_back(phiAngle);
+    }
+    phiMin = *std::min_element(phiAngles.begin(), phiAngles.end());
+    phiMax = *std::max_element(phiAngles.begin(), phiAngles.end());
+    // Convert to degrees before return
+    double phiMinDeg = phiMin * (180.0 / PI);
+    double phiMaxDeg = phiMax * (180.0 / PI);
+
+    return { phiMinDeg, phiMaxDeg };
+}
+
+double phiAngleFinder(double links[4], double thetaThreeAngle, double phiMin, double phiMax)
 {
     double l1_pos, l1_neg, l2_pos, l2_neg; // l1 and l2 are both lengthL pos means positive root, neg means negative root
     double phiAngle;
 
-    for (phiAngle = 0; phiAngle <= 360; phiAngle += 0.01)
+    for (phiAngle = phiMin; phiAngle <= phiMax; phiAngle += 1e-2)
     {
         phiAngle = phiAngle * (PI / 180.0);
 
@@ -26,27 +70,27 @@ double phiAngleFinder(double links[4], double thetaThreeAngle)
 
         l2_pos = links[1] * cos(phiAngle + thetaThreeAngle) + sqrt(pow(links[2], 2) - pow(links[1], 2) * pow(sin(phiAngle + thetaThreeAngle), 2));
         l2_neg = links[1] * cos(phiAngle + thetaThreeAngle) - sqrt(pow(links[2], 2) - pow(links[1], 2) * pow(sin(phiAngle + thetaThreeAngle), 2));
-        
+
         // Check both l1 and l2 pairs are positive
         if (l1_pos >= 0 && l2_pos >= 0 && fabs(l1_pos - l2_pos) < TOLERANCE)
         {
             phiAngle = phiAngle * (180.0 / PI); // Convert to degrees before return
-            return phiAngle; 
+            return phiAngle;
         }
         if (l1_pos >= 0 && l2_neg >= 0 && fabs(l1_pos - l2_neg) < TOLERANCE)
         {
             phiAngle = phiAngle * (180.0 / PI); // Convert to degrees before return
-            return phiAngle; 
+            return phiAngle;
         }
         if (l1_neg >= 0 && l2_pos >= 0 && fabs(l1_neg - l2_pos) < TOLERANCE)
         {
             phiAngle = phiAngle * (180.0 / PI); // Convert to degrees before return
-            return phiAngle; 
+            return phiAngle;
         }
         if (l1_neg >= 0 && l2_neg >= 0 && fabs(l1_neg - l2_neg) < TOLERANCE)
         {
             phiAngle = phiAngle * (180.0 / PI); // Convert to degrees before return
-            return phiAngle; 
+            return phiAngle;
         }
         phiAngle = phiAngle * (180.0 / PI);
     }
@@ -68,7 +112,8 @@ double thetaTwoAngleFinder(double links[4], double phiAngle)
     double thetaTwoAngle = acos((pow(links[0], 2) + pow(links[3], 2) - pow(lengthL, 2)) / (2 * links[0] * links[3]));
     thetaTwoAngle = thetaTwoAngle * (180.0 / PI); // TEMP
     return thetaTwoAngle;
-}
+}   
+// THERE IS A PROBLEM HERE
 double thetaFourAngleFinder(double links[4], double thetaThreeAngle, double phiAngle, double betaAngle)
 {
     double lengthL = calculateLengthL(links, phiAngle);
@@ -76,9 +121,9 @@ double thetaFourAngleFinder(double links[4], double thetaThreeAngle, double phiA
     double phiAngleRad = phiAngle * (PI / 180);
     double betaAngleRad = betaAngle * (PI / 180);
 
-    double controller = sqrt(pow(links[3], 2) + pow(lengthL, 2) - 2 * links[3] * lengthL * cos(phiAngleRad + betaAngleRad));
+    double controller = sqrt(pow(links[3], 2) + pow(lengthL, 2) - (2 * links[3] * lengthL * cos(phiAngleRad)));
 
-    if (fabs(controller - links[0]) < TOLERANCE)
+    if (fabs(controller - links[0]) < TOLERANCETHETAFOUR)
     {
         thetaFourAngle = 180 - phiAngle + betaAngle;
     }
@@ -89,6 +134,8 @@ double thetaFourAngleFinder(double links[4], double thetaThreeAngle, double phiA
 
     return thetaFourAngle;
 }
+
+
 
 void DoubleRockerMechanism::checkGrashofTheorem()
 {
@@ -110,21 +157,29 @@ void DoubleRockerMechanism::checkGrashofTheorem()
 void DoubleRockerMechanism::angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
 {
     // Create a text file named angles.txt
-    std::ofstream outFile("angles.txt"); 
+    std::ofstream outFile("angles.txt");
     if (!outFile) {
         std::cerr << "Error opening file for writing!" << std::endl;
         return;
     }
+    outFile << std::fixed << std::setprecision(10);
 
-    for (thetaThreeAngle = 0; thetaThreeAngle <= 360; thetaThreeAngle += 0.1)
+    std::pair<double, double> lengthLRange = rangeOfLengthL(links);
+    double minL = lengthLRange.first;
+    double maxL = lengthLRange.second;
+
+    std::pair<double, double> phiAngleRange = rangeOfPhiAngle(links, minL, maxL);
+    double phiMin = phiAngleRange.first;
+    double phiMax = phiAngleRange.second;
+
+    for (thetaThreeAngle = 0; thetaThreeAngle <= 360; thetaThreeAngle += 0.01)
     {
         double PhiAngle;
         double BetaAngle;
 
-
         double thetaThreeAngleRad = degreesToRadians(thetaThreeAngle); // Convert angle degrees to radians
 
-        PhiAngle = phiAngleFinder(links, thetaThreeAngleRad);
+        PhiAngle = phiAngleFinder(links, thetaThreeAngleRad, phiMin, phiMax);
         BetaAngle = betaAngleFinder(links, PhiAngle);
         thetaTwoAngle = thetaTwoAngleFinder(links, PhiAngle);
         thetaFourAngle = thetaFourAngleFinder(links, thetaThreeAngle, PhiAngle, BetaAngle);
@@ -132,19 +187,19 @@ void DoubleRockerMechanism::angleFinder(double links[4], double thetaTwoAngle, d
         double thetaTwoAngleRad = degreesToRadians(thetaTwoAngle); // Convert angle degrees to radians
         double thetaFourAngleRad = degreesToRadians(thetaFourAngle); // Convert angle degrees to radians
 
-        outFile << thetaTwoAngle << " " << thetaThreeAngle << " " << thetaFourAngle << std::endl;
+        outFile << thetaTwoAngle << " " << thetaThreeAngle << " " << thetaFourAngle << " " << PhiAngle << " " << BetaAngle << std::endl;
         positionCalculator(links, thetaTwoAngleRad, thetaThreeAngleRad, thetaFourAngleRad);
         thetaThreeAngle = radiansToDegrees(thetaThreeAngleRad); // Convert angle radians to degree
     }
     std::cout << ("Simulation is finished");
 
     // Close the file when done
-    outFile.close(); 
+    outFile.close();
 }
 void DoubleRockerMechanism::positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
 {
     // Create a text file named positions.txt
-    std::ofstream outFile("positions.txt", std::ios::app); 
+    std::ofstream outFile("positions.txt", std::ios::app);
     if (!outFile) {
         std::cerr << "Error opening file for writing!" << std::endl;
         return;
@@ -158,5 +213,5 @@ void DoubleRockerMechanism::positionCalculator(double links[4], double thetaTwoA
     outFile << xA << " " << yA << std::endl;
 
     // Close the file when done
-    outFile.close(); 
+    outFile.close();
 }

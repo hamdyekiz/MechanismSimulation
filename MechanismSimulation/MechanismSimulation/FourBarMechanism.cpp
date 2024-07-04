@@ -1,6 +1,7 @@
 #include "FourBarMechanism.h"
 #include <cmath>
 
+
 const double PI = 3.14159265358979323846;
 
 // Method to convert degrees to radians
@@ -131,11 +132,13 @@ void FourBarMechanism::calculateShortestAndLongest(double links[4], int& shortes
     longestLink = 0;
 
     for (int i = 1; i < 4; ++i) {
-        if (links[i] < shortest) {
+        if (links[i] < shortest) 
+        {
             shortest = links[i];
             shortestLink = i;
         }
-        if (links[i] > longest) {
+        if (links[i] > longest) 
+        {
             longest = links[i];
             longestLink = i;
         }
