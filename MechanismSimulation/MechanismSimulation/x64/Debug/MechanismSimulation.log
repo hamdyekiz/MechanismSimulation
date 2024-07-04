@@ -1,3 +1,5 @@
 ﻿  DoubleRockerMechanism.cpp
-D:\GİTHUB\MechanismSimulation\MechanismSimulation\MechanismSimulation\DoubleRockerMechanism.cpp(97,1): warning C4715: 'phiAngleFinder': not all control paths return a value
+  ParallelogramMechanism.cpp
+  RockerCrankMechanism.cpp
+  Generating Code...
   MechanismSimulation.vcxproj -> D:\GİTHUB\MechanismSimulation\MechanismSimulation\x64\Debug\MechanismSimulation.exe

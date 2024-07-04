@@ -3,7 +3,8 @@
 #include <iostream>
 
 // Base class for Four-Bar Mechanisms
-class FourBarMechanism {
+class FourBarMechanism 
+{
 protected:
     /* Lengths of the four-bar mechanism
     links[0] = Link 1 (crank/driver)
@@ -19,11 +20,14 @@ protected:
 
     // Method to check the mechanism is obey the Grashof's Law or not
     virtual void checkGrashofTheorem(); 
+
     virtual void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle);
     virtual void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle);
 
     // Find the mechanism type with respect to location of the shortest link
     static FourBarMechanism* mechanismController(double Links[4]);
+
+    virtual std::pair <double, double> rangeOfThetaTwoAngle(double links[4]);
 
 public:
     // In this method user enters the Links of the mechanism
@@ -32,8 +36,16 @@ public:
     static double degreesToRadians(double degrees);
     // Method to convert radians to degrees
     static double radiansToDegrees(double radians);
-    // Method to convert thetaTwoAngle to 0-360 range
-    static double normalizeAngle(double angle);
+
+    double transmissionAngle_Calculator(double links[4], double lengthL);
+    double thetaThreeAngle_Calculator(double rLength, double sLength, double gLength, double hLength);
+    double thetaFourAngle_Calculator(double thetaThreeAngle, double transmissionAngle);
+
+    double lengthL_Calculator(double links[4], double thetaTwoAngle);
+    double lengthG_Calculator(double links[4], double transmissionAngle);
+    double lengthH_Calculator(double links[4], double transmissionAngle);
+    double lengthR_Calculator(double links[4], double thetaTwoAngle);
+    double lengthS_Calculator(double links[4], double thetaTwoAngle);
     /*
     This method find the shortest and longest link index and length
     shortestLink = index of the shortest link
@@ -61,10 +73,10 @@ public:
         angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
         positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
-
     void checkGrashofTheorem() override;
     void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
     void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    std::pair <double, double> rangeOfThetaTwoAngle(double links[4]) override;
 };
 
 // Rocker-Crank Mechanism class inherites from FourBarMechanism class (shortest link = rocker) 
@@ -85,6 +97,7 @@ public:
     void checkGrashofTheorem() override;
     void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
     void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    std::pair <double, double> rangeOfThetaTwoAngle(double links[4]) override;
 };
 
 // Double-Crank Mechanism (Drag Link Mechanism) class inherites from FourBarMechanism class (shortest link = ground) 
@@ -106,10 +119,12 @@ public:
     void checkGrashofTheorem() override;
     void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
     void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    std::pair <double, double> rangeOfThetaTwoAngle(double links[4]) override;
 };
 
 // Double-Rocker Mechanism class inherites from FourBarMechanism class (shortest link = coupler)
-class DoubleRockerMechanism : public FourBarMechanism {
+class DoubleRockerMechanism : public FourBarMechanism 
+{
 public:
     DoubleRockerMechanism(double Links[4])
     {
@@ -126,6 +141,7 @@ public:
     void checkGrashofTheorem() override;
     void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
     void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    std::pair <double, double> rangeOfThetaTwoAngle(double links[4]) override;
 };
 
 // Parallelogram Mechanism inherites from FourBarMechanism class
@@ -146,6 +162,7 @@ public:
     void checkGrashofTheorem() override;
     void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
     void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    std::pair <double, double> rangeOfThetaTwoAngle(double links[4]) override;
 };
 
 #endif // FOURBARMECHANISM_H
