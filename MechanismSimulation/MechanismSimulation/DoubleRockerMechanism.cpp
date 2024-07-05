@@ -1,17 +1,13 @@
 #include "FourBarMechanism.h"
 #include <fstream>
 #include <iomanip>
+#include <vector>
 
 const double PI = 3.14159265358979323846;
 
 
-void DoubleRockerMechanism::checkGrashofTheorem()
+void DoubleRockerMechanism::checkGrashofTheorem(double shortest, double longest)
 {
-    int shortestLink, longestLink;
-    double shortest, longest;
-
-    FourBarMechanism::calculateShortestAndLongest(links, shortestLink, longestLink, shortest, longest);
-
     std::cout << "The type of mechanism is Double-Rocker Mechanism.\n";
     if (shortest + longest <= links[0] + links[1] + links[2] + links[3] - shortest - longest)
     {
@@ -22,18 +18,18 @@ void DoubleRockerMechanism::checkGrashofTheorem()
     }
 }
 
-std::pair <double, double> DoubleRockerMechanism::rangeOfThetaTwoAngle(double links[4])
+std::pair <double, double> DoubleRockerMechanism::rangeOfThetaTwoAngle(double links[4], double shortest, double longest)
 {
     double thetaTwoMin, thetaTwoMax;
-    double thetaTwoMinRad = acos((pow(links[0], 2) + pow(links[3], 2) - pow(links[1] - links[2], 2)) / (2 * links[0] * links[3]));
-    thetaTwoMin = radiansToDegrees(thetaTwoMinRad);
-    thetaTwoMax = 360 - thetaTwoMin;
+    double thetaTwoMaxRad = acos((pow(links[0], 2) + pow(links[3], 2) - pow(links[1] + links[2], 2)) / (2 * links[0] * links[3]));
+    thetaTwoMax = radiansToDegrees(thetaTwoMaxRad);
+    thetaTwoMin = -thetaTwoMax;
 
     return{ thetaTwoMin, thetaTwoMax };
 }
 
 
-void DoubleRockerMechanism::angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
+void DoubleRockerMechanism::angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle, double shortest, double longest)
 {
     // Create a text file named angles.txt
     std::ofstream outFile("angles.txt");
@@ -43,7 +39,7 @@ void DoubleRockerMechanism::angleFinder(double links[4], double thetaTwoAngle, d
     }
     outFile << std::fixed << std::setprecision(10);
 
-    std::pair<double, double> thetaTwoAngleRange = rangeOfThetaTwoAngle(links);
+    std::pair<double, double> thetaTwoAngleRange = rangeOfThetaTwoAngle(links, shortest, longest);
     double thetaTwoMin = thetaTwoAngleRange.first;
     double thetaTwoMax = thetaTwoAngleRange.second;
 
@@ -78,20 +74,18 @@ void DoubleRockerMechanism::angleFinder(double links[4], double thetaTwoAngle, d
 
 void DoubleRockerMechanism::positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
 {
-    // Create a text file named positions.txt
-    std::ofstream outFile("positions.txt", std::ios::app);
-    if (!outFile) {
-        std::cerr << "Error opening file for writing!" << std::endl;
-        return;
-    }
+    std::vector<double> link1Position(2);
+    link1Position[0] = links[0] * cos(thetaTwoAngle); // X position
+    link1Position[1] = links[0] * sin(thetaTwoAngle); // Y position
 
-    // point A(xA, yA)
-    double xA = links[0] * cos(thetaTwoAngle);
-    double yA = links[0] * sin(thetaTwoAngle);
+    std::vector<double> link2Position(2);
+    link2Position[0] = links[1] * cos(thetaThreeAngle); // X position
+    link2Position[1] = links[1] * sin(thetaThreeAngle); // Y position
 
-    // Write positions to the positions.txt file
-    outFile << xA << " " << yA << std::endl;
+    std::vector<double> link3Position(2);
+    link3Position[0] = links[2] * cos(thetaFourAngle); // X position
+    link3Position[1] = links[2] * sin(thetaFourAngle); // Y position
 
-    // Close the file when done
-    outFile.close();
+    // Fourth link is fixed
+    std::vector<double> link4Position = { 0.0, 0.0 }; // Ground link at origin
 }

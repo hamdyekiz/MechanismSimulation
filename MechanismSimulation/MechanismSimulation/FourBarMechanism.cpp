@@ -2,25 +2,43 @@
 #include <cmath>
 
 
+
 const double PI = 3.14159265358979323846;
+
+bool FourBarMechanism::isMechanism(double links[4])
+{
+    return (links[0] + links[1] + links[2] > links[3]) && (links[0] + links[1] + links[3] > links[2]) &&
+        (links[0] + links[2] + links[3] > links[1]) && (links[1] + links[2] + links[3] > links[0]);
+}
 
 FourBarMechanism* FourBarMechanism::userLinkInput()
 {
     double Links[4];
     double ThetaTwoAngle;
+    while (true)
+    {
+        std::cout << "Please enter length of the link 1: ";
+        std::cin >> Links[0];
 
-    std::cout << "Please enter length of the link 1: ";
-    std::cin >> Links[0];
+        std::cout << "Please enter length of the link 2: ";
+        std::cin >> Links[1];
 
-    std::cout << "Please enter length of the link 2: ";
-    std::cin >> Links[1];
+        std::cout << "Please enter length of the link 3: ";
+        std::cin >> Links[2];
 
-    std::cout << "Please enter length of the link 3: ";
-    std::cin >> Links[2];
+        std::cout << "Please enter length of the link 4: ";
 
-    std::cout << "Please enter length of the link 4: ";
+        std::cin >> Links[3];
 
-    std::cin >> Links[3];
+        if (isMechanism(Links))
+        {
+            break; 
+        }
+        else
+        {
+            std::cout << "The link lengths do not form a valid mechanism. Please re-enter the lengths.\n";
+        }
+    }
 
     return mechanismController(Links);
 }
@@ -33,23 +51,23 @@ FourBarMechanism* FourBarMechanism::mechanismController(double links[4])
 
     if (links[0] == links[2] && links[1] == links[3])
     {
-        return new ParallelogramMechanism(links);
+        return new ParallelogramMechanism(links, shortest, longest);
     }
     else if (shortestLink == 3)
     {
-        return new DoubleCrankMechanism(links);
+        return new DoubleCrankMechanism(links, shortest, longest);
     }
     else if (shortestLink == 2)
     {
-        return new RockerCrankMechanism(links);
+        return new RockerCrankMechanism(links, shortest, longest);
     }
     else if (shortestLink == 1)
     {
-        return new DoubleRockerMechanism(links);
+        return new DoubleRockerMechanism(links, shortest, longest);
     }
     else if (shortestLink == 0)
     {
-        return new CrankRockerMechanism(links);
+        return new CrankRockerMechanism(links, shortest, longest);
     }
     else
     {
@@ -91,13 +109,10 @@ double FourBarMechanism::radiansToDegrees(double radians)
     return radians * (180.0 / PI);
 }
 
-std::pair <double, double> FourBarMechanism::rangeOfThetaTwoAngle(double links[4])
+std::pair <double, double> FourBarMechanism::rangeOfThetaTwoAngle(double links[4], double shortest, double longest)
 {
-    int shortestLink, longestLink;
-    double shortest, longest;
-    double thetaTwoMin, thetaTwoMax;
 
-    calculateShortestAndLongest(links, shortestLink, longestLink, shortest, longest);
+    double thetaTwoMin, thetaTwoMax;
 
     if (shortest + longest <= links[0] + links[1] + links[2] + links[3] - shortest - longest)
     {
@@ -163,7 +178,7 @@ double FourBarMechanism::thetaFourAngle_Calculator(double thetaThreeAngle, doubl
     return thetaFourAngle;
 }
 
-void FourBarMechanism::angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
+void FourBarMechanism::angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle, double shortest, double longest)
 {
     std::cerr << "There might be a problem.\n";
 }
@@ -172,7 +187,7 @@ void FourBarMechanism::positionCalculator(double links[4], double thetaTwoAngle,
     std::cerr << "There might be a problem.\n";
 }
 
-void FourBarMechanism::checkGrashofTheorem()
+void FourBarMechanism::checkGrashofTheorem(double shortest, double longest)
 {
     std::cerr << "There might be a problem.\n";
 }

@@ -5,6 +5,12 @@
 // Base class for Four-Bar Mechanisms
 class FourBarMechanism 
 {
+    public:
+    // In this method user enters the Links of the mechanism
+    static FourBarMechanism* userLinkInput();
+private:
+   static bool isMechanism(double links[4]);
+
 protected:
     /* Lengths of the four-bar mechanism
     links[0] = Link 1 (crank/driver)
@@ -18,20 +24,20 @@ protected:
     double thetaThreeAngle;
     double thetaFourAngle;
 
-    // Method to check the mechanism is obey the Grashof's Law or not
-    virtual void checkGrashofTheorem(); 
+    int shortestLink, longestLink;
+    double shortest, longest;
 
-    virtual void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle);
+    // Method to check the mechanism is obey the Grashof's Law or not
+    virtual void checkGrashofTheorem(double shortest, double longest);
+
+    virtual void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle, double shortest, double longest);
     virtual void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle);
 
     // Find the mechanism type with respect to location of the shortest link
     static FourBarMechanism* mechanismController(double Links[4]);
 
-    virtual std::pair <double, double> rangeOfThetaTwoAngle(double links[4]);
+    virtual std::pair <double, double> rangeOfThetaTwoAngle(double links[4], double shortest, double longest);
 
-public:
-    // In this method user enters the Links of the mechanism
-    static FourBarMechanism* userLinkInput();
     // Method to convert degrees to radians
     static double degreesToRadians(double degrees);
     // Method to convert radians to degrees
@@ -55,114 +61,125 @@ public:
     */ 
     static void calculateShortestAndLongest(double links[4], int& shortestLink, int& longestLink, double& shortest, double& longest);
 
-
 };
 
 // Crank-Rocker Mechanism class inherites from FourBarMechanism class (shortest link = crank) 
 class CrankRockerMechanism : public FourBarMechanism 
 {
 public:
-    CrankRockerMechanism(double Links[4])
+    CrankRockerMechanism(double Links[4], double Shortest, double Longest)
     {
         links[0] = Links[0];
         links[1] = Links[1];
         links[2] = Links[2];
         links[3] = Links[3];
+        shortest = Shortest;
+        longest = Longest;
 
-        checkGrashofTheorem();
-        angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
+        checkGrashofTheorem(shortest, longest);
+        angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle, shortest, longest);
         positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
-    void checkGrashofTheorem() override;
-    void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+
+    void checkGrashofTheorem(double shortest, double longest) override;
+    void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle, double shortest, double longest) override;
     void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
-    std::pair <double, double> rangeOfThetaTwoAngle(double links[4]) override;
+    std::pair <double, double> rangeOfThetaTwoAngle(double links[4], double shortest, double longest) override;
 };
 
 // Rocker-Crank Mechanism class inherites from FourBarMechanism class (shortest link = rocker) 
 class RockerCrankMechanism : public FourBarMechanism 
 {
 public:
-    RockerCrankMechanism(double Links[4])
+    RockerCrankMechanism(double Links[4], double Shortest, double Longest)
     {
         links[0] = Links[0];
         links[1] = Links[1];
         links[2] = Links[2];
         links[3] = Links[3];
+        shortest = Shortest;
+        longest = Longest;
 
-        checkGrashofTheorem();
-        angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
+        checkGrashofTheorem(shortest, longest);
+        angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle, shortest, longest);
+        positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
-    void checkGrashofTheorem() override;
-    void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    void checkGrashofTheorem(double shortest, double longest) override;
+    void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle, double shortest, double longest) override;
     void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
-    std::pair <double, double> rangeOfThetaTwoAngle(double links[4]) override;
+    std::pair <double, double> rangeOfThetaTwoAngle(double links[4], double shortest, double longest) override;
 };
 
 // Double-Crank Mechanism (Drag Link Mechanism) class inherites from FourBarMechanism class (shortest link = ground) 
 class DoubleCrankMechanism : public FourBarMechanism 
 {
 public:
-    DoubleCrankMechanism(double Links[4])
+    DoubleCrankMechanism(double Links[4], double Shortest, double Longest)
     {
         links[0] = Links[0];
         links[1] = Links[1];
         links[2] = Links[2];
         links[3] = Links[3];
+        shortest = Shortest;
+        longest = Longest;
 
-        checkGrashofTheorem();
-        angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
+        checkGrashofTheorem(shortest, longest);
+        angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle, shortest, longest);
         positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
-    void checkGrashofTheorem() override;
-    void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    void checkGrashofTheorem(double shortest, double longest) override;
+    void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle, double shortest, double longest) override;
     void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
-    std::pair <double, double> rangeOfThetaTwoAngle(double links[4]) override;
+    std::pair <double, double> rangeOfThetaTwoAngle(double links[4], double shortest, double longest) override;
 };
 
 // Double-Rocker Mechanism class inherites from FourBarMechanism class (shortest link = coupler)
 class DoubleRockerMechanism : public FourBarMechanism 
 {
 public:
-    DoubleRockerMechanism(double Links[4])
+    DoubleRockerMechanism(double Links[4], double Shortest, double Longest)
     {
         links[0] = Links[0];
         links[1] = Links[1];
         links[2] = Links[2];
         links[3] = Links[3];
+        shortest = Shortest;
+        longest = Longest;
 
-        checkGrashofTheorem();
-        angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
+        checkGrashofTheorem(shortest, longest);
+        angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle, shortest, longest);
         positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
-    void checkGrashofTheorem() override;
-    void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    void checkGrashofTheorem(double shortest, double longest) override;
+    void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle, double shortest, double longest) override;
     void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
-    std::pair <double, double> rangeOfThetaTwoAngle(double links[4]) override;
+    std::pair <double, double> rangeOfThetaTwoAngle(double links[4], double shortest, double longest) override;
 };
 
 // Parallelogram Mechanism inherites from FourBarMechanism class
 class ParallelogramMechanism : public FourBarMechanism {
 public:
-    ParallelogramMechanism(double Links[4])
+    ParallelogramMechanism(double Links[4], double Shortest, double Longest)
     {
         links[0] = Links[0];
         links[1] = Links[1];
         links[2] = Links[2];
         links[3] = Links[3];
+        shortest = Shortest;
+        longest = Longest;
 
-        checkGrashofTheorem();
-        angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
+        checkGrashofTheorem(shortest, longest);
+        angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle, shortest, longest);
         positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
-    void checkGrashofTheorem() override;
-    void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
+    void checkGrashofTheorem(double shortest, double longest) override;
+    void angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle, double shortest, double longest) override;
     void positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle) override;
-    std::pair <double, double> rangeOfThetaTwoAngle(double links[4]) override;
+    std::pair <double, double> rangeOfThetaTwoAngle(double links[4], double shortest, double longest) override;
 };
 
 #endif // FOURBARMECHANISM_H

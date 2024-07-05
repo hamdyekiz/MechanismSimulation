@@ -1,4 +1,5 @@
-﻿  DoubleRockerMechanism.cpp
+﻿  DoubleCrankMechanism.cpp
+  DoubleRockerMechanism.cpp
   ParallelogramMechanism.cpp
   RockerCrankMechanism.cpp
   Generating Code...
