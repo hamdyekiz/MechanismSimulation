@@ -78,7 +78,6 @@ public:
 
         checkGrashofTheorem(shortest, longest);
         angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle, shortest, longest);
-        positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
     void checkGrashofTheorem(double shortest, double longest) override;
@@ -102,7 +101,6 @@ public:
 
         checkGrashofTheorem(shortest, longest);
         angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle, shortest, longest);
-        positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
     void checkGrashofTheorem(double shortest, double longest) override;
@@ -126,7 +124,6 @@ public:
 
         checkGrashofTheorem(shortest, longest);
         angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle, shortest, longest);
-        positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
     void checkGrashofTheorem(double shortest, double longest) override;
@@ -150,7 +147,6 @@ public:
 
         checkGrashofTheorem(shortest, longest);
         angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle, shortest, longest);
-        positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
     void checkGrashofTheorem(double shortest, double longest) override;
@@ -173,7 +169,6 @@ public:
 
         checkGrashofTheorem(shortest, longest);
         angleFinder(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle, shortest, longest);
-        positionCalculator(links, thetaTwoAngle, thetaThreeAngle, thetaFourAngle);
     }
 
     void checkGrashofTheorem(double shortest, double longest) override;

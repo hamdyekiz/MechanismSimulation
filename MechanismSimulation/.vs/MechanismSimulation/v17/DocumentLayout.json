@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\ParallelogramMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|solutionrelative:MechanismSimulation\\ParallelogramMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\FourBarMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|solutionrelative:MechanismSimulation\\FourBarMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\CrankRockerMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|solutionrelative:MechanismSimulation\\CrankRockerMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\RockerCrankMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|solutionrelative:MechanismSimulation\\RockerCrankMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\ParallelogramMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|solutionrelative:MechanismSimulation\\ParallelogramMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\DoubleRockerMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -25,6 +21,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\DoubleCrankMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|solutionrelative:MechanismSimulation\\DoubleCrankMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\CrankRockerMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|solutionrelative:MechanismSimulation\\CrankRockerMechanism.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{535EE077-3173-4F43-8015-6B5A769F932C}|MechanismSimulation\\MechanismSimulation.vcxproj|D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\FourBarMechanism.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,80 +50,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RockerCrankMechanism.cpp",
-              "DocumentMoniker": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\RockerCrankMechanism.cpp",
-              "RelativeDocumentMoniker": "MechanismSimulation\\RockerCrankMechanism.cpp",
-              "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\RockerCrankMechanism.cpp",
-              "RelativeToolTip": "MechanismSimulation\\RockerCrankMechanism.cpp",
-              "ViewState": "AQIAAD4AAAAAAAAAAAAuwEQAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-29T10:19:34.962Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CrankRockerMechanism.cpp",
-              "DocumentMoniker": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\CrankRockerMechanism.cpp",
-              "RelativeDocumentMoniker": "MechanismSimulation\\CrankRockerMechanism.cpp",
-              "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\CrankRockerMechanism.cpp",
-              "RelativeToolTip": "MechanismSimulation\\CrankRockerMechanism.cpp",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAF0AAABEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-29T09:19:25.776Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "DoubleCrankMechanism.cpp",
               "DocumentMoniker": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\DoubleCrankMechanism.cpp",
               "RelativeDocumentMoniker": "MechanismSimulation\\DoubleCrankMechanism.cpp",
               "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\DoubleCrankMechanism.cpp",
               "RelativeToolTip": "MechanismSimulation\\DoubleCrankMechanism.cpp",
-              "ViewState": "AQIAADkAAAAAAAAAAAAAAGEAAABOAAAA",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAkwFUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-29T10:19:21.796Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DoubleRockerMechanism.cpp",
-              "DocumentMoniker": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\DoubleRockerMechanism.cpp",
-              "RelativeDocumentMoniker": "MechanismSimulation\\DoubleRockerMechanism.cpp",
-              "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\DoubleRockerMechanism.cpp",
-              "RelativeToolTip": "MechanismSimulation\\DoubleRockerMechanism.cpp",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAAAFUAAABEAAAA",
+              "DocumentIndex": 1,
+              "Title": "RockerCrankMechanism.cpp",
+              "DocumentMoniker": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\RockerCrankMechanism.cpp",
+              "RelativeDocumentMoniker": "MechanismSimulation\\RockerCrankMechanism.cpp",
+              "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\RockerCrankMechanism.cpp",
+              "RelativeToolTip": "MechanismSimulation\\RockerCrankMechanism.cpp",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAkwEwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-29T10:19:26.426Z",
+              "WhenOpened": "2024-06-29T10:19:34.962Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ParallelogramMechanism.cpp",
-              "DocumentMoniker": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\ParallelogramMechanism.cpp",
-              "RelativeDocumentMoniker": "MechanismSimulation\\ParallelogramMechanism.cpp",
-              "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\ParallelogramMechanism.cpp",
-              "RelativeToolTip": "MechanismSimulation\\ParallelogramMechanism.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFcAAABOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-29T10:19:30.684Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "FourBarMechanism.cpp",
               "DocumentMoniker": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\FourBarMechanism.cpp",
               "RelativeDocumentMoniker": "MechanismSimulation\\FourBarMechanism.cpp",
               "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\FourBarMechanism.cpp",
               "RelativeToolTip": "MechanismSimulation\\FourBarMechanism.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "ViewState": "AQIAAGkAAAAAAAAAAAAcwHsAAABaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-27T18:05:20.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ParallelogramMechanism.cpp",
+              "DocumentMoniker": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\ParallelogramMechanism.cpp",
+              "RelativeDocumentMoniker": "MechanismSimulation\\ParallelogramMechanism.cpp",
+              "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\ParallelogramMechanism.cpp",
+              "RelativeToolTip": "MechanismSimulation\\ParallelogramMechanism.cpp",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAkwEwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-29T10:19:30.684Z",
               "EditorCaption": ""
             },
             {
@@ -134,9 +108,35 @@
               "RelativeDocumentMoniker": "MechanismSimulation\\FourBarMechanism.h",
               "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\FourBarMechanism.h",
               "RelativeToolTip": "MechanismSimulation\\FourBarMechanism.h",
-              "ViewState": "AQIAAJIAAAAAAAAAAAAkwGMAAAAcAAAA",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAcwDMAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-06-27T18:08:38.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CrankRockerMechanism.cpp",
+              "DocumentMoniker": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\CrankRockerMechanism.cpp",
+              "RelativeDocumentMoniker": "MechanismSimulation\\CrankRockerMechanism.cpp",
+              "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\CrankRockerMechanism.cpp",
+              "RelativeToolTip": "MechanismSimulation\\CrankRockerMechanism.cpp",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAAAFMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-29T09:19:25.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DoubleRockerMechanism.cpp",
+              "DocumentMoniker": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\DoubleRockerMechanism.cpp",
+              "RelativeDocumentMoniker": "MechanismSimulation\\DoubleRockerMechanism.cpp",
+              "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\DoubleRockerMechanism.cpp",
+              "RelativeToolTip": "MechanismSimulation\\DoubleRockerMechanism.cpp",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAkwEwAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-29T10:19:26.426Z",
               "EditorCaption": ""
             },
             {
@@ -147,10 +147,9 @@
               "RelativeDocumentMoniker": "MechanismSimulation\\MechanismSimulation.cpp",
               "ToolTip": "D:\\G\u0130THUB\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation\\MechanismSimulation.cpp",
               "RelativeToolTip": "MechanismSimulation\\MechanismSimulation.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-27T14:25:17.356Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-27T14:25:17.356Z"
             }
           ]
         }

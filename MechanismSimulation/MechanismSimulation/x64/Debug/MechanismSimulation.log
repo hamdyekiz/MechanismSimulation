@@ -1,6 +1,3 @@
-﻿  DoubleCrankMechanism.cpp
-  DoubleRockerMechanism.cpp
-  ParallelogramMechanism.cpp
-  RockerCrankMechanism.cpp
-  Generating Code...
+﻿  FourBarMechanism.cpp
+D:\GİTHUB\MechanismSimulation\MechanismSimulation\MechanismSimulation\FourBarMechanism.cpp(17,12): warning C4101: 'ThetaTwoAngle': unreferenced local variable
   MechanismSimulation.vcxproj -> D:\GİTHUB\MechanismSimulation\MechanismSimulation\x64\Debug\MechanismSimulation.exe

@@ -31,13 +31,21 @@ std::pair <double, double> DoubleRockerMechanism::rangeOfThetaTwoAngle(double li
 
 void DoubleRockerMechanism::angleFinder(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle, double shortest, double longest)
 {
+    // Check is there a position file before
+    static bool isFileCleared = false;
+    if (!isFileCleared) {
+        std::ofstream positionFileClear("position.txt", std::ios::trunc);
+        positionFileClear.close();
+        isFileCleared = true;
+    }
+
     // Create a text file named angles.txt
-    std::ofstream outFile("angles.txt");
-    if (!outFile) {
+    std::ofstream angleFile("angles.txt");
+    if (!angleFile) {
         std::cerr << "Error opening file for writing!" << std::endl;
         return;
     }
-    outFile << std::fixed << std::setprecision(10);
+    angleFile << std::fixed << std::setprecision(10);
 
     std::pair<double, double> thetaTwoAngleRange = rangeOfThetaTwoAngle(links, shortest, longest);
     double thetaTwoMin = thetaTwoAngleRange.first;
@@ -49,7 +57,6 @@ void DoubleRockerMechanism::angleFinder(double links[4], double thetaTwoAngle, d
         double lengthL = lengthL_Calculator(links, thetaTwoAngleRad);
         double transmissionAngle = transmissionAngle_Calculator(links, lengthL);
 
-        // Thus are used in calculating thetaThreeAngle
         double rLength = lengthR_Calculator(links, thetaTwoAngleRad);
         double sLength = lengthS_Calculator(links, thetaTwoAngleRad);
         double gLength = lengthG_Calculator(links, transmissionAngle);
@@ -63,29 +70,43 @@ void DoubleRockerMechanism::angleFinder(double links[4], double thetaTwoAngle, d
 
         thetaFourAngle = thetaFourAngle_Calculator(thetaThreeAngleDeg, transmissionAngleDeg);
 
+        angleFile << thetaTwoAngle << " " << thetaThreeAngleDeg << " " << thetaFourAngle << std::endl;
 
-        outFile << thetaTwoAngle << " " << thetaThreeAngleDeg << " " << thetaFourAngle << std::endl;
+        positionCalculator(links, thetaTwoAngleRad, thetaThreeAngle, degreesToRadians(thetaFourAngle));
     }
+ 
     std::cout << ("Simulation is finished");
 
     // Close the file when done
-    outFile.close();
+    angleFile.close();
 }
 
 void DoubleRockerMechanism::positionCalculator(double links[4], double thetaTwoAngle, double thetaThreeAngle, double thetaFourAngle)
 {
+    std::ofstream positionFile("position.txt", std::ios::app);
+    if (!positionFile) {
+        std::cerr << "Error opening file for writing!" << std::endl;
+        return;
+    }
+    positionFile << std::fixed << std::setprecision(10);
+
     std::vector<double> link1Position(2);
     link1Position[0] = links[0] * cos(thetaTwoAngle); // X position
     link1Position[1] = links[0] * sin(thetaTwoAngle); // Y position
 
     std::vector<double> link2Position(2);
-    link2Position[0] = links[1] * cos(thetaThreeAngle); // X position
-    link2Position[1] = links[1] * sin(thetaThreeAngle); // Y position
+    link2Position[0] = link1Position[0] + links[1] * cos(thetaThreeAngle); // X position
+    link2Position[1] = link1Position[1] + links[1] * sin(thetaThreeAngle); // Y position
 
     std::vector<double> link3Position(2);
-    link3Position[0] = links[2] * cos(thetaFourAngle); // X position
+    link3Position[0] = links[3] + links[2] * cos(thetaFourAngle); // X position
     link3Position[1] = links[2] * sin(thetaFourAngle); // Y position
 
     // Fourth link is fixed
-    std::vector<double> link4Position = { 0.0, 0.0 }; // Ground link at origin
+    std::vector<double> link4Position = { links[3], 0.0 }; // Ground link at origin
+
+    positionFile << link1Position[0] << " " << link1Position[1] << " "
+        << link2Position[0] << " " << link2Position[1] << " "
+        << link3Position[0] << " " << link3Position[1] << " "
+        << link4Position[0] << " " << link4Position[1] << std::endl;
 }

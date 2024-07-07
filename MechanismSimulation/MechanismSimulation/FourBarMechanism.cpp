@@ -121,7 +121,7 @@ std::pair <double, double> FourBarMechanism::rangeOfThetaTwoAngle(double links[4
     }
     else
     {
-        double thetaTwoMinRad = acos((pow(links[0], 2) + pow(links[3], 2) - pow(links[1] - links[2], 2)) / (2 * links[0] * links[3]));
+        double thetaTwoMinRad = acos((pow(links[0], 2) + pow(links[3], 2) - pow(links[1] + links[2], 2)) / (2 * links[0] * links[3]));
         thetaTwoMin = radiansToDegrees(thetaTwoMinRad);
         thetaTwoMax = 360 - thetaTwoMin;
     }
